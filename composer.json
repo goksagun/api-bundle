@@ -1,0 +1,36 @@
+{
+    "name": "goksagun/api-bundle",
+    "description": "Api bundle",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "Burak Bolat",
+            "email": "brkblt@gmail.com"
+        }
+    ],
+    "license": "MIT",
+    "keywords": [
+        "symfony api bundle"
+    ],
+    "require": {},
+    "require-dev": {
+        "symfony/phpunit-bridge": "*"
+    },
+    "autoload": {
+        "psr-4": { "Goksagun\\ApiBundle\\": "" },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {}
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
