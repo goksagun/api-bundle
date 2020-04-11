@@ -1,3 +1,6 @@
+## 0.2.1 (April 12, 2020)
+  - Fix FQNS bug for doctrine orm mapping
+
 ## 0.2.0 (April 12, 2020)
   - Implement entity timestamps create and update datetime
 
