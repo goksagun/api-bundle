@@ -6,7 +6,7 @@ trait UpdatedTimestampTrait
 {
 
     /**
-     * @ORM\Column(type="datetime")
+     * @Doctrine\ORM\Mapping\Column(type="datetime")
      */
     private $updatedAt;
 
@@ -23,7 +23,7 @@ trait UpdatedTimestampTrait
     }
 
     /**
-     * @ORM\PreUpdate()
+     * @Doctrine\ORM\Mapping\PreUpdate()
      */
     public function setUpdatedTimestamp()
     {
