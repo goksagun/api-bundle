@@ -6,7 +6,7 @@ trait CreatedTimestampTrait
 {
 
     /**
-     * @ORM\Column(type="datetime")
+     * @Doctrine\ORM\Mapping\Column(type="datetime")
      */
     private $createdAt;
 
@@ -23,7 +23,7 @@ trait CreatedTimestampTrait
     }
 
     /**
-     * @ORM\PrePersist()
+     * @Doctrine\ORM\Mapping\PrePersist()
      */
     public function setCreatedTimestamp()
     {
