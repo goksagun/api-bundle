@@ -1,3 +1,6 @@
+## 0.3.0 (April 13, 2020)
+  - Implement entity soft-delete
+
 ## 0.2.2 (April 12, 2020)
   - Fix README file
 

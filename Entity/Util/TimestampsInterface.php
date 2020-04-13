@@ -2,7 +2,7 @@
 
 namespace Goksagun\ApiBundle\Entity\Util;
 
-interface TimestampsInterface extends CreatedTimestampInterface, UpdatedTimestampInterface
+interface TimestampsInterface extends CreatedTimestampInterface, UpdatedTimestampInterface, DeletedTimestampInterface
 {
 
 }

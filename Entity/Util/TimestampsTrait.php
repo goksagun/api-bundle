@@ -6,4 +6,5 @@ trait TimestampsTrait
 {
     use CreatedTimestampTrait;
     use UpdatedTimestampTrait;
+    use DeletedTimestampTrait;
 }

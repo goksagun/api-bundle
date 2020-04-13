@@ -8,5 +8,8 @@
         <service id="Goksagun\ApiBundle\EventListener\StringToJsonTransformListener">
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
         </service>
+        <service id="Goksagun\ApiBundle\EventListener\TrashedListener">
+            <tag name="doctrine.event_listener" event="preFlush" method="preFlush"/>
+        </service>
     </services>
 </container>
