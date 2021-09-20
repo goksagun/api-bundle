@@ -10,8 +10,9 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Validation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-abstract class AbstractValidation
+abstract class AbstractValidation implements ValidationInterface
 {
+    const DEFAULT_METHOD = '__invoke';
     const METHOD_PREFIX = 'validate';
     const METHOD_SUFFIX = 'Action';
 
@@ -82,13 +83,13 @@ abstract class AbstractValidation
 
     public function convertStringToArray($key)
     {
-        $this->request->query->set($key, array_unique(preg_split('/ ?[,|] ?/', $this->request->query->get($key))));
+        $this->request->query->set($key, array_unique($this->parseStringAsArray($this->request->query->get($key))));
     }
 
     public function convertStringToArrayForFieldKeyword(): void
     {
         foreach ($field = $this->request->query->get('field') as $key => $value) {
-            $field[$key] = array_unique(preg_split('/ ?[,|] ?/', $field[$key]));
+            $field[$key] = array_unique($this->parseStringAsArray($field[$key]));
         }
 
         $this->request->query->set('field', $field);
@@ -96,6 +97,10 @@ abstract class AbstractValidation
 
     private function getMethod(?string $action): string
     {
+        if (self::DEFAULT_METHOD === $action) {
+            return $action;
+        }
+
         $method = self::METHOD_PREFIX.ucfirst($action);
 
         if (!method_exists($this, $method)) {
