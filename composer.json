@@ -12,7 +12,10 @@
     "keywords": [
         "symfony api bundle"
     ],
-    "require": {},
+    "require": {
+        "symfony/validator": "*",
+        "doctrine/annotations": "*"
+    },
     "require-dev": {
         "symfony/phpunit-bridge": "*"
     },
