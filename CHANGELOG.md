@@ -1,3 +1,7 @@
+## 0.4.0 (September 21, 2021)
+  - Add validate annotation
+  - Add validation handler
+
 ## 0.3.0 (April 13, 2020)
   - Implement entity soft-delete
 
