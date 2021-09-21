@@ -5,8 +5,16 @@
         https://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <service id="Goksagun\ApiBundle\EventListener\ValidationListener">
+            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="annotations.reader"/>
+        </service>
         <service id="Goksagun\ApiBundle\EventListener\StringToJsonTransformListener">
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
+        </service>
+        <service id="Goksagun\ApiBundle\EventListener\ExceptionListener">
+            <tag name="kernel.event_listener" event="kernel.exception" method="onKernelException"/>
         </service>
         <service id="Goksagun\ApiBundle\EventListener\TrashedListener">
             <tag name="doctrine.event_listener" event="preFlush" method="preFlush"/>
