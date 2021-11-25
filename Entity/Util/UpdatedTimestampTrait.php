@@ -8,6 +8,7 @@ trait UpdatedTimestampTrait
     /**
      * @Doctrine\ORM\Mapping\Column(type="datetime")
      */
+    #[\Doctrine\ORM\Mapping\Column(type: 'datetime')]
     private $updatedAt;
 
     public function getUpdatedAt(): ?\DateTimeInterface
@@ -25,6 +26,7 @@ trait UpdatedTimestampTrait
     /**
      * @Doctrine\ORM\Mapping\PreUpdate()
      */
+    #[\Doctrine\ORM\Mapping\PreUpdate()]
     public function setUpdatedTimestamp()
     {
         $this->updatedAt = new \DateTime();

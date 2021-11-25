@@ -22,10 +22,16 @@ class ValidationListener
      */
     protected $reader;
 
-    public function __construct(ContainerInterface $container, Reader $reader)
+    /**
+     * @var string
+     */
+    protected $type;
+
+    public function __construct(ContainerInterface $container, Reader $reader, string $type = 'annotation')
     {
         $this->container = $container;
         $this->reader = $reader;
+        $this->type = $type;
     }
 
     public function onKernelController(ControllerEvent $event)
@@ -50,7 +56,11 @@ class ValidationListener
             return;
         }
 
-        $validateAnnotation = $this->reader->getMethodAnnotation($reflectionMethod, Validate::class);
+        if ('attribute' === $this->type) {
+            $validateAnnotation = $reflectionMethod->getAttributes(Validate::class);
+        } else {
+            $validateAnnotation = $this->reader->getMethodAnnotation($reflectionMethod, Validate::class);
+        }
 
         if (null === $validateAnnotation) {
             try {
@@ -59,14 +69,22 @@ class ValidationListener
                 return;
             }
 
-            $validateAnnotation = $this->reader->getClassAnnotation($reflectionClass, Validate::class);
+            if ('attribute' === $this->type) {
+                $validateAnnotation = $reflectionClass->getAttributes(Validate::class);
+            } else {
+                $validateAnnotation = $this->reader->getClassAnnotation($reflectionClass, Validate::class);
+            }
         }
 
-        if (null === $validateAnnotation) {
+        if (null === $validateAnnotation || [] === $validateAnnotation) {
             return;
         }
 
-        $validationClass = $validateAnnotation->getClass();
+        if ('attribute' === $this->type) {
+            $validationClass = $validateAnnotation[0]->getArguments()['class'] ?? $validateAnnotation[0]->getArguments()[0];
+        } else {
+            $validationClass = $validateAnnotation->getClass();
+        }
 
         $validation = $this->container->get($validationClass);
 

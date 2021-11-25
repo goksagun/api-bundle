@@ -8,6 +8,7 @@ trait DeletedTimestampTrait
     /**
      * @Doctrine\ORM\Mapping\Column(type="datetime", nullable=true)
      */
+    #[\Doctrine\ORM\Mapping\Column(type: 'datetime', nullable: true)]
     private $deletedAt;
 
     public function getDeletedAt(): ?\DateTimeInterface

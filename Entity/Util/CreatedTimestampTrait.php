@@ -8,6 +8,7 @@ trait CreatedTimestampTrait
     /**
      * @Doctrine\ORM\Mapping\Column(type="datetime")
      */
+    #[\Doctrine\ORM\Mapping\Column(type: 'datetime')]
     private $createdAt;
 
     public function getCreatedAt(): ?\DateTimeInterface
@@ -25,6 +26,7 @@ trait CreatedTimestampTrait
     /**
      * @Doctrine\ORM\Mapping\PrePersist()
      */
+    #[\Doctrine\ORM\Mapping\PrePersist()]
     public function setCreatedTimestamp()
     {
         $this->createdAt = new \DateTime();

@@ -18,9 +18,15 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder('api');
         $rootNode = $treeBuilder->getRootNode();
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->arrayNode('validation')
+                    ->children()
+                        ->scalarNode('type')->defaultValue('annotation')->end()
+                    ->end()
+                ->end() // validation
+            ->end()
+        ;
 
         return $treeBuilder;
     }
