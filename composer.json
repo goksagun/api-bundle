@@ -13,24 +13,26 @@
         "symfony api bundle"
     ],
     "require": {
+        "php": "^8.0",
         "symfony/validator": "*",
+        "symfony/http-foundation": "*",
+        "symfony/http-kernel": "*",
+        "symfony/dependency-injection": "*",
+        "symfony/config": "*",
+        "doctrine/orm": "*",
         "doctrine/annotations": "*"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "*"
     },
     "autoload": {
-        "psr-4": { "Goksagun\\ApiBundle\\": "" },
-        "exclude-from-classmap": [
-            "/Tests/"
-        ]
+        "psr-4": {
+            "Goksagun\\ApiBundle\\": "src/"
+        }
     },
     "autoload-dev": {
-        "psr-4": {}
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.1.x-dev"
+        "psr-4": {
+            "Goksagun\\ApiBundle\\Tests\\": "tests/"
         }
     },
     "config": {

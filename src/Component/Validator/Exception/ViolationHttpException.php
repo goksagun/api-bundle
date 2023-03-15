@@ -9,12 +9,12 @@ use Symfony\Component\Validator\ConstraintViolationListInterface;
 
 class ViolationHttpException extends HttpException
 {
-    protected $violations;
+    protected ConstraintViolationListInterface $violations;
 
     /**
      * @param ConstraintViolationListInterface $violations The violation errors
      * @param string $message The internal exception message
-     * @param \Exception $previous The previous exception
+     * @param \Exception|null $previous The previous exception
      * @param int $code The internal exception code
      */
     public function __construct(

@@ -6,5 +6,5 @@ interface DeletedTimestampInterface
 {
     public function getDeletedAt(): ?\DateTimeInterface;
 
-    public function setDeletedAt(?\DateTimeInterface $deletedAt): DeletedTimestampInterface;
+    public function setDeletedAt(?\DateTimeInterface $deletedAt): static;
 }

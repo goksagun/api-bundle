@@ -17,7 +17,7 @@ class TrashedFilter extends SQLFilter
     /**
      * @inheritDoc
      */
-    public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias)
+    public function addFilterConstraint(ClassMetadata $targetEntity, $targetTableAlias): string
     {
         if (!$targetEntity->reflClass->implementsInterface(DeletedTimestampInterface::class)) {
             return '';

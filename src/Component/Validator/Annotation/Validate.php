@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace Goksagun\ApiBundle\Component\Validator\Annotation;
 
-use Attribute;
 use Symfony\Contracts\Service\Attribute\Required;
 
 /**
  * @Annotation
  * @Target({"CLASS","METHOD"})
  */
-#[Attribute(Attribute::TARGET_CLASS | Attribute::TARGET_METHOD)]
+#[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
 class Validate
 {
     /**

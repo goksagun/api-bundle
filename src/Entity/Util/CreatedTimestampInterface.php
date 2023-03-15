@@ -6,5 +6,5 @@ interface CreatedTimestampInterface
 {
     public function getCreatedAt(): ?\DateTimeInterface;
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): CreatedTimestampInterface;
+    public function setCreatedAt(\DateTimeInterface $createdAt): static;
 }

@@ -16,22 +16,16 @@ abstract class AbstractValidation implements ValidationInterface
     const METHOD_PREFIX = 'validate';
     const METHOD_SUFFIX = 'Action';
 
-    /**
-     * @var ValidatorInterface
-     */
-    protected $validator;
+    protected ValidatorInterface $validator;
 
-    /**
-     * @var Request
-     */
-    protected $request;
+    protected Request $request;
 
     public function __construct()
     {
         $this->validator = Validation::createValidator();
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return get_class($this);
     }
@@ -81,7 +75,7 @@ abstract class AbstractValidation implements ValidationInterface
         }
     }
 
-    public function convertStringToArray($key)
+    public function convertStringToArray($key): void
     {
         $this->request->query->set($key, array_unique($this->parseStringAsArray($this->request->query->get($key))));
     }

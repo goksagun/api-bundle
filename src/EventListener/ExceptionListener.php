@@ -12,7 +12,7 @@ use Symfony\Component\Validator\ConstraintViolation;
 
 class ExceptionListener
 {
-    public function onKernelException(ExceptionEvent $event)
+    public function onKernelException(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
 

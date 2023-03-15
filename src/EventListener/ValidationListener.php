@@ -12,20 +12,11 @@ use Symfony\Component\HttpKernel\Event\ControllerEvent;
 
 class ValidationListener
 {
-    /**
-     * @var ContainerInterface
-     */
-    protected $container;
+    protected ContainerInterface $container;
 
-    /**
-     * @var Reader
-     */
-    protected $reader;
+    protected Reader $reader;
 
-    /**
-     * @var string
-     */
-    protected $type;
+    protected string $type;
 
     public function __construct(ContainerInterface $container, Reader $reader, string $type = 'annotation')
     {
@@ -34,7 +25,7 @@ class ValidationListener
         $this->type = $type;
     }
 
-    public function onKernelController(ControllerEvent $event)
+    public function onKernelController(ControllerEvent $event): void
     {
         $request = $event->getRequest();
         $controller = $event->getController();

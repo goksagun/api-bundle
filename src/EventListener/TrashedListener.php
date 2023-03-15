@@ -11,9 +11,9 @@ use Goksagun\ApiBundle\Entity\Util\DeletedTimestampInterface;
 
 class TrashedListener
 {
-    public function preFlush(PreFlushEventArgs $args)
+    public function preFlush(PreFlushEventArgs $args): void
     {
-        $entityManager = $args->getEntityManager();
+        $entityManager = $args->getObjectManager();
         $unitOfWork = $entityManager->getUnitOfWork();
 
         /** @var DeletedTimestampInterface $deletion */

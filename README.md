@@ -36,6 +36,6 @@ in the `config/bundles.php` file of your project:
 
 return [
     // ...
-    Goksagun\ApiBundle\ApiBundle::class => ['all' => true],
+    \Goksagun\ApiBundle\src\ApiBundle::class => ['all' => true],
 ];
 ```
