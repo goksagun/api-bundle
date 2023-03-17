@@ -1,3 +1,11 @@
+## 0.5.0 (March 17, 2023)
+  - Add docs starter page
+  - Add http rest route short attributes
+  - Change bundle name
+  - Add extended timestamps trait
+  - Add attribute support
+  - Add php8 attribute support
+
 ## 0.4.1 (September 22, 2021)
   - Change priority of StringToJsonTransformListener
 
