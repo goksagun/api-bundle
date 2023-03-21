@@ -5,6 +5,10 @@
         https://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <instanceof id="Goksagun\ApiBundle\Component\Validator\ValidationInterface" public="true" autowire="true">
+            <!-- services whose classes are instances of CustomInterface will be tagged automatically -->
+            <tag name="api.validator"/>
+        </instanceof>
         <service id="api.listener.string_to_json_transform_listener" class="Goksagun\ApiBundle\EventListener\StringToJsonTransformListener">
             <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController"/>
         </service>
