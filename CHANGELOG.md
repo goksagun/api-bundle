@@ -1,3 +1,6 @@
+## 0.6.0 (March 21, 2023)
+  - Implement new bundle configurator
+
 ## 0.5.0 (March 17, 2023)
   - Add docs starter page
   - Add http rest route short attributes
