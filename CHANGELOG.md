@@ -1,3 +1,6 @@
+## 0.6.1 (March 27, 2023)
+  - Move constructor method from AbstractValidation
+
 ## 0.6.0 (March 21, 2023)
   - Implement new bundle configurator
 
