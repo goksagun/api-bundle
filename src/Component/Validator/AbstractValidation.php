@@ -8,7 +8,6 @@ use Goksagun\ApiBundle\Component\Validator\Exception\ViolationHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Validation;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 abstract class AbstractValidation implements ValidationInterface
 {
@@ -16,14 +15,7 @@ abstract class AbstractValidation implements ValidationInterface
     const METHOD_PREFIX = 'validate';
     const METHOD_SUFFIX = 'Action';
 
-    protected ValidatorInterface $validator;
-
     protected Request $request;
-
-    public function __construct()
-    {
-        $this->validator = Validation::createValidator();
-    }
 
     public function __toString(): string
     {
@@ -68,7 +60,9 @@ abstract class AbstractValidation implements ValidationInterface
 
     public function validate(array $input, Assert\Collection $constraint): void
     {
-        $violations = $this->validator->validate($input, $constraint);
+        $validator = Validation::createValidator();
+
+        $violations = $validator->validate($input, $constraint);
 
         if (count($violations)) {
             throw new ViolationHttpException($violations);
@@ -95,10 +89,10 @@ abstract class AbstractValidation implements ValidationInterface
             return $action;
         }
 
-        $method = self::METHOD_PREFIX.ucfirst($action);
+        $method = self::METHOD_PREFIX . ucfirst($action);
 
         if (!method_exists($this, $method)) {
-            $method = $method.self::METHOD_SUFFIX;
+            $method = $method . self::METHOD_SUFFIX;
             if (!method_exists($this, $method)) {
                 throw new \RuntimeException(sprintf('The "%s" method is missing in class "%s".', $method, $this));
             }
