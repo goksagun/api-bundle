@@ -36,6 +36,7 @@ class ExceptionListener
                         'code' => $violation->getCode(),
                         'message' => $violation->getMessage(),
                         'path' => $violation->getPropertyPath(),
+                        'scope' => $exception->getScope(),
                     ];
                 }
             }

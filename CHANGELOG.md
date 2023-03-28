@@ -1,3 +1,6 @@
+## 0.7.0 (March 28, 2023)
+  - Add support for multi scope validation
+
 ## 0.6.1 (March 27, 2023)
   - Move constructor method from AbstractValidation
 
