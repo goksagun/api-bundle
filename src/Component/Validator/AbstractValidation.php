@@ -5,17 +5,24 @@ declare(strict_types=1);
 namespace Goksagun\ApiBundle\Component\Validator;
 
 use Goksagun\ApiBundle\Component\Validator\Exception\ViolationHttpException;
+use Goksagun\ApiBundle\Utils\ArrayUtils;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerAwareTrait;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Validation;
 
-abstract class AbstractValidation implements ValidationInterface
+abstract class AbstractValidation implements ValidationInterface, LoggerAwareInterface
 {
+    use LoggerAwareTrait;
+
     const DEFAULT_METHOD = '__invoke';
     const METHOD_PREFIX = 'validate';
     const METHOD_SUFFIX = 'Action';
 
     protected Request $request;
+
+    protected Scope $scope = Scope::REQUEST;
 
     public function __toString(): string
     {
@@ -26,7 +33,6 @@ abstract class AbstractValidation implements ValidationInterface
     {
         $this->request = $request;
 
-        $input = null;
         if (null !== $request) {
             if ($field = $request->query->get('field')) {
                 if (!is_array($field)) {
@@ -45,13 +51,32 @@ abstract class AbstractValidation implements ValidationInterface
                     $this->convertStringToArray('sort');
                 }
             }
-
-            $input = $request->isMethod('GET') ? $request->query->all() : $request->request->all();
         }
 
         $method = $this->getMethod($action);
 
-        $options = $this->$method($input);
+        $this->logger->debug(sprintf('Matched method is "%s".', $method));
+
+        $options = $this->$method();
+
+        $this->logger->debug('Options:', $options);
+
+        if (!in_array($this->scope, Scope::cases())) {
+            throw new \InvalidArgumentException(sprintf('The scope "%s" is invalid!', $this->scope->value));
+        }
+
+        $this->logger->debug(sprintf('The scope matched as "%s"', $this->scope->value));
+
+        $inputKeys = array_keys($options);
+
+        $input = match ($this->scope) {
+            Scope::QUERY => $request->query->all(),
+            Scope::REQUEST => $this->request->request->all(),
+            Scope::HEADERS => $request->headers->all(),
+            Scope::ATTRIBUTES => ArrayUtils::only($this->request->attributes->all(), $inputKeys),
+        };
+
+        $this->logger->debug('Input:', $input);
 
         $constraint = new Assert\Collection($options);
 
@@ -65,7 +90,7 @@ abstract class AbstractValidation implements ValidationInterface
         $violations = $validator->validate($input, $constraint);
 
         if (count($violations)) {
-            throw new ViolationHttpException($violations);
+            throw new ViolationHttpException($violations, $this->scope);
         }
     }
 
