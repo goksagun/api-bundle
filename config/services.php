@@ -22,8 +22,7 @@ return static function (ContainerConfigurator $containerConfigurator) {
     $services
         ->set(ValidationListener::class)
         ->tag('kernel.event_listener', ['event' => 'kernel.controller', 'method' => 'onKernelController'])
-        ->args([service('service_container')])
-    ;
+        ->args([service('service_container')]);
 
     $services
         ->set(ExceptionListener::class)
@@ -31,5 +30,5 @@ return static function (ContainerConfigurator $containerConfigurator) {
 
     $services
         ->set(TrashedListener::class)
-        ->tag('doctrine.event_listener', ['event' => 'preFlush', 'method' => 'preFlushe']);
+        ->tag('doctrine.event_listener', ['event' => 'preFlush', 'method' => 'preFlush']);
 };
