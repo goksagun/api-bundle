@@ -1,3 +1,7 @@
+## 0.8.0 (March 31, 2023)
+  - Fix composer and services config
+  - Refactor and make configuration with native php
+
 ## 0.7.0 (March 28, 2023)
   - Add support for multi scope validation
 

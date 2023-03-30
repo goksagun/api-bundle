@@ -18,11 +18,9 @@ class ValidationListener
 
     protected string $type;
 
-    public function __construct(ContainerInterface $container, Reader $reader, string $type = 'annotation')
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-        $this->reader = $reader;
-        $this->type = $type;
     }
 
     public function onKernelController(ControllerEvent $event): void
@@ -47,35 +45,23 @@ class ValidationListener
             return;
         }
 
-        if ('attribute' === $this->type) {
-            $validateAnnotation = $reflectionMethod->getAttributes(Validate::class);
-        } else {
-            $validateAnnotation = $this->reader->getMethodAnnotation($reflectionMethod, Validate::class);
-        }
+        $validateAnnotation = $reflectionMethod->getAttributes(Validate::class);
 
-        if (null === $validateAnnotation) {
+        if ([] === $validateAnnotation) {
             try {
                 $reflectionClass = new \ReflectionClass($class);
             } catch (\ReflectionException $e) {
                 return;
             }
 
-            if ('attribute' === $this->type) {
-                $validateAnnotation = $reflectionClass->getAttributes(Validate::class);
-            } else {
-                $validateAnnotation = $this->reader->getClassAnnotation($reflectionClass, Validate::class);
-            }
+            $validateAnnotation = $reflectionClass->getAttributes(Validate::class);
         }
 
-        if (null === $validateAnnotation || [] === $validateAnnotation) {
+        if ([] === $validateAnnotation) {
             return;
         }
 
-        if ('attribute' === $this->type) {
-            $validationClass = $validateAnnotation[0]->getArguments()['class'] ?? $validateAnnotation[0]->getArguments()[0];
-        } else {
-            $validationClass = $validateAnnotation->getClass();
-        }
+        $validationClass = $validateAnnotation[0]->getArguments()['class'] ?? $validateAnnotation[0]->getArguments()[0];
 
         $validation = $this->container->get($validationClass);
 
