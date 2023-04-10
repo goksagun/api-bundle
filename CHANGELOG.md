@@ -1,3 +1,6 @@
+## 0.8.1 (April 10, 2023)
+  - Fix service autoconfigure
+
 ## 0.8.0 (March 31, 2023)
   - Fix composer and services config
   - Refactor and make configuration with native php
