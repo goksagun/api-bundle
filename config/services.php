@@ -2,7 +2,6 @@
 
 namespace Symfony\Component\DependencyInjection\Loader\Configurator;
 
-use Goksagun\ApiBundle\Component\Validator\ValidationInterface;
 use Goksagun\ApiBundle\EventListener\ExceptionListener;
 use Goksagun\ApiBundle\EventListener\StringToJsonTransformListener;
 use Goksagun\ApiBundle\EventListener\TrashedListener;
@@ -10,10 +9,6 @@ use Goksagun\ApiBundle\EventListener\ValidationListener;
 
 return static function (ContainerConfigurator $containerConfigurator) {
     $services = $containerConfigurator->services();
-
-    $services
-        ->set(ValidationInterface::class)
-        ->tag('api.validator');
 
     $services
         ->set(StringToJsonTransformListener::class)
