@@ -1,3 +1,8 @@
+## 0.9.0 (January 31, 2024)
+  - Clean up ignored files
+  - Add composer.lock file to gitignore
+  - Remove deprecation
+
 ## 0.8.1 (April 10, 2023)
   - Fix service autoconfigure
 
