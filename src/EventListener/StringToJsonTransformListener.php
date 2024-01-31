@@ -13,7 +13,7 @@ class StringToJsonTransformListener
     {
         $request = $event->getRequest();
 
-        if ($request->getContentType() !== 'json' || !$content = $request->getContent()) {
+        if ($request->getContentTypeFormat() !== 'json' || !$content = $request->getContent()) {
             return;
         }
 
