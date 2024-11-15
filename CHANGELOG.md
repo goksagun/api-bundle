@@ -1,3 +1,6 @@
+## 0.10.0 (November 15, 2024)
+  - Remove doctrine annotation support
+
 ## 0.9.0 (January 31, 2024)
   - Clean up ignored files
   - Add composer.lock file to gitignore
