@@ -8,9 +8,6 @@ use Doctrine\ORM\Mapping\MappedSuperclass;
 trait UpdatedTimestampTrait
 {
 
-    /**
-     * @Doctrine\ORM\Mapping\Column(type="datetime_immutable", nullable=true)
-     */
     #[\Doctrine\ORM\Mapping\Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeInterface $updatedAt = null;
 
@@ -26,9 +23,6 @@ trait UpdatedTimestampTrait
         return $this;
     }
 
-    /**
-     * @Doctrine\ORM\Mapping\PreUpdate()
-     */
     #[\Doctrine\ORM\Mapping\PreUpdate()]
     public function setUpdatedTimestamp(): void
     {
