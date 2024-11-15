@@ -1,3 +1,7 @@
+## 0.11.0 (November 15, 2024)
+  - Add version script
+  - Support null for update timestamp
+
 ## 0.10.0 (November 15, 2024)
   - Remove doctrine annotation support
 
