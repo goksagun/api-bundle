@@ -6,5 +6,5 @@ interface UpdatedTimestampInterface
 {
     public function getUpdatedAt(): ?\DateTimeInterface;
 
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): static;
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): static;
 }
