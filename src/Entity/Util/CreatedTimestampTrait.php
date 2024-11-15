@@ -8,9 +8,6 @@ use Doctrine\ORM\Mapping\MappedSuperclass;
 trait CreatedTimestampTrait
 {
 
-    /**
-     * @Doctrine\ORM\Mapping\Column(type="datetime_immutable")
-     */
     #[\Doctrine\ORM\Mapping\Column(type: 'datetime_immutable')]
     private ?\DateTimeInterface $createdAt = null;
 
@@ -26,9 +23,6 @@ trait CreatedTimestampTrait
         return $this;
     }
 
-    /**
-     * @Doctrine\ORM\Mapping\PrePersist()
-     */
     #[\Doctrine\ORM\Mapping\PrePersist()]
     public function setCreatedTimestamp(): void
     {

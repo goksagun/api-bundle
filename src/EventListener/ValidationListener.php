@@ -45,23 +45,23 @@ class ValidationListener
             return;
         }
 
-        $validateAnnotation = $reflectionMethod->getAttributes(Validate::class);
+        $reflectionAttributes = $reflectionMethod->getAttributes(Validate::class);
 
-        if ([] === $validateAnnotation) {
+        if ([] === $reflectionAttributes) {
             try {
                 $reflectionClass = new \ReflectionClass($class);
             } catch (\ReflectionException $e) {
                 return;
             }
 
-            $validateAnnotation = $reflectionClass->getAttributes(Validate::class);
+            $reflectionAttributes = $reflectionClass->getAttributes(Validate::class);
         }
 
-        if ([] === $validateAnnotation) {
+        if ([] === $reflectionAttributes) {
             return;
         }
 
-        $validationClass = $validateAnnotation[0]->getArguments()['class'] ?? $validateAnnotation[0]->getArguments()[0];
+        $validationClass = $reflectionAttributes[0]->getArguments()['class'] ?? $reflectionAttributes[0]->getArguments()[0];
 
         $validation = $this->container->get($validationClass);
 

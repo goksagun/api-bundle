@@ -6,10 +6,6 @@ namespace Goksagun\ApiBundle\Component\Validator\Annotation;
 
 use Symfony\Contracts\Service\Attribute\Required;
 
-/**
- * @Annotation
- * @Target({"CLASS","METHOD"})
- */
 #[\Attribute(\Attribute::TARGET_CLASS | \Attribute::TARGET_METHOD)]
 class Validate
 {
@@ -17,15 +13,11 @@ class Validate
      * The class name of the validation.
      *
      * @var string
-     * @Required()
      */
     #[Required]
     public $class;
 
-    /**
-     * @param string|array $class
-     */
-    public function __construct($class)
+    public function __construct(string|array $class)
     {
         if (is_array($class)) {
             $this->class = reset($class);

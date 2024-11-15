@@ -22,8 +22,7 @@
         "symfony/dependency-injection": "*",
         "symfony/framework-bundle": "*",
         "symfony/config": "*",
-        "doctrine/orm": "*",
-        "doctrine/annotations": "*"
+        "doctrine/orm": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"

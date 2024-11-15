@@ -8,9 +8,6 @@ use Doctrine\ORM\Mapping\MappedSuperclass;
 trait DeletedTimestampTrait
 {
 
-    /**
-     * @Doctrine\ORM\Mapping\Column(type="datetime_immutable", nullable=true)
-     */
     #[\Doctrine\ORM\Mapping\Column(type: 'datetime_immutable', nullable: true)]
     private ?\DateTimeInterface $deletedAt = null;
 
