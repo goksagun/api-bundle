@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Goksagun\ApiBundle\EventListener;
 
-use Doctrine\Common\Annotations\Reader;
 use Goksagun\ApiBundle\Component\Validator\AbstractValidation;
 use Goksagun\ApiBundle\Component\Validator\Annotation\Validate;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -13,8 +12,6 @@ use Symfony\Component\HttpKernel\Event\ControllerEvent;
 class ValidationListener
 {
     protected ContainerInterface $container;
-
-    protected Reader $reader;
 
     protected string $type;
 
